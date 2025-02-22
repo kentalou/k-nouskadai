@@ -1,0 +1,89 @@
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* 背景色を明るく */
+}
+
+/* 認証フォームのスタイル */
+.auth-container {
+    max-width: 400px;
+    margin: 120px auto; /* 上下のスペースを広く */
+    text-align: center;
+    position: relative; /* 🔹 エラーメッセージの基準点を設定 */
+}
+
+.auth-container h1 {
+    font-size: 2rem; /* タイトルのサイズを調整 */
+    font-weight: 400; /* タイトルを太さ */
+    color: #333;
+}
+
+/* 入力欄の親要素 */
+.form-group {
+    display: flex;
+    flex-direction: column; /* 🔹 縦並び */
+    align-items: flex-start; /* 🔹 左寄せ */
+    padding-top: 10px;
+    padding-bottom: 40px;
+    position: relative; /* 🔹 エラーメッセージの基準点 */
+}
+
+.input-container {
+    width: 100%;
+    position: relative; /* 🔹 エラーメッセージの表示位置を調整 */
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+}
+
+.auth-container input[name="email"] {
+    margin-bottom: none !important;
+}
+
+/* ボタンのスタイル */
+.btn {
+    display: inline-block;
+    padding: 2px 0px; /* ボタンを横長に */
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 13px; /* ボタンの角を丸く */
+    cursor: pointer;
+    width: 120px; /* ボタンの幅を固定 */
+    margin: 0 30px; /* ボタン間の水平スペース */
+    text-decoration: none;
+}
+
+.btn-skyblue {
+    background-color: #00eaff; /* 明るい水色 */
+    color: black; /* ボタン内文字の色を黒に */
+}
+
+.btn-orange {
+    background-color: #ff9800; /* オレンジ色 */
+    color: black; /* ボタン内文字の色を黒に */
+}
+
+/* スペーシング調整 */
+.form-actions {
+    margin-top: 0px; /* 入力欄とボタン全体の間隔 */
+    text-align: center; /* ボタンを中央揃え */
+}
+
+/* エラーメッセージ配置設定 */
+.invalid-feedback {
+    color: red;
+    font-size: 0.875rem; /* 小さめのフォントサイズ */
+    top: 100%;  /* フィールドのすぐ下に配置 */
+    width: max-content;  /* メッセージ幅を適切に調整 */
+    white-space: nowrap; /* 長いエラーメッセージを折り返さない */
+    display: block; /* 🔹 エラーメッセージを次の行に配置 */
+    position: absolute;
+}

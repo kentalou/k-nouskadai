@@ -1,0 +1,209 @@
+/* 共通枠線スタイル */
+.content-wrapper {
+    background-color: transparent !important; /* 背景色を削除 */
+    border: 1px solid #000 !important; /* 枠線のみ */
+    border-radius: 0 !important; /* 角丸を削除 */
+    margin-top: 10px; /* 上部の余白を調整 */
+    margin-bottom: 20px; /* 下部の余白 */
+    box-shadow: none; /* シャドウを削除 */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start; /* 項目を上寄せ */
+    min-width: 700px;
+    min-height: 740px;
+    height: auto; /* ✅ コンテンツに応じて伸縮 */
+    position: relative; /* ボタンの位置調整のため */
+    padding-bottom: 60px !important;
+}
+
+.form-group {
+    display: flex;
+    align-items: flex-start; /* 項目を上寄せ */
+    justify-content: left;
+    width: 100%; /* 親要素の○%に幅を広げる */
+    margin: 30px 10px 35px 30px;/*  上   右  下   左 */
+    position: relative; /* エラーメッセージabsolute用 */
+}
+
+/* ラベルのスタイル */
+.form-group label:not(.custom-file-label) {
+    flex: 0 0 160px; /* 固定幅を指定 */
+    font-size: 30px; /* 文字サイズを大きくする */
+    font-weight: 600; /* フォントの太さを調整 */
+    text-align: left; /* 横方向左揃え */
+    font-family: "Arial", sans-serif; /* フォントを指定 */
+    align-self: flex-start; /* 縦方向上揃え */
+    padding: 0px;
+    white-space: nowrap; /* 空白を無視して詰める */
+}
+
+/* 入力フォームのスタイル */
+.form-control {
+    border: 1px solid #ddd; /* 枠線 */
+    border-radius: 3px; /* 角を丸く */
+    padding: 6px; /* 内側の余白 */  
+    box-shadow: none; /* 影を消す */
+    max-width: 380px;
+    margin-left: 45px; /* 入力フォームを少し右に動かして間隔を調整 */
+}
+
+input.form-control,
+select.form-control {
+    height: 40px;  /* 高さを狭める */
+    padding: 5px 10px;  /* 内側の余白も調整してバランス良く */
+    font-size: 14px;  /* 文字サイズをすこし小さく */
+}
+
+/* ラベル自体のBootstrap設定変更*/
+label.col-md-3 {
+    display: inline-flex; /* インラインフレックスで項目名とアスタリスク間の余白を排除 */
+    flex: 0 0 auto; /* 項目名の幅を内容に合わせる */
+}
+
+/* 選択フォーム（メーカー名）の設定　*/
+select.form-control {
+    appearance: auto;  /* ブラウザデフォルトの矢印表示 */
+}
+
+/* テキストフォーム（コメント）の設定 */
+textarea.form-control {
+    display: block;
+    min-height: 80px;
+    height: 75px;
+    resize: vertical;  /* 高さの変更を可能に */
+}
+
+/* ボタンのスタイル */
+.btn-orange {
+    background-color: #ff9800 !important;/* filter: brightnes適用のための!important */
+    border: 1px solid #e68a00;
+}
+
+.btn-skyblue {
+    background-color: #00CCFF !important;/* filter: brightnes適用のための!important */
+    border: 1px solid #00b3e6;
+    margin-left: 60px;
+}
+
+.btn-orange:hover, .btn-orange:focus,
+.btn-skyblue:hover, .btn-skyblue:focus {
+    filter: brightness(85%); /* ✅ 15% 暗くする */
+}
+
+.btn-orange, .btn-skyblue{
+    display: flex;
+    justify-content: center; /* 横方向中央揃え */
+    align-items: center; /* 縦方向中央揃え */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1) !important; /* ボックスシャドウを設定 */
+    width: 90px; /* ボタンの幅を固定 */
+    height: 35px; /* ボタンの高さを固定 */
+    color: black;
+    font-size: 17px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    white-space: nowrap; /* テキストを改行させない */
+}
+
+.form-actions {
+    position: absolute; /* 絶対位置指定 */
+    bottom: 20px; /* 下部からの距離を指定 */
+    display: flex;
+    justify-content: left; /* 左寄せ */
+    margin: 25px 10px 20px 20px; /* 他のフォーム要素と同じ間隔を設定 */
+    width: 100%; /* フォーム全体の幅に合わせる */
+}
+
+/* ファイル選択ボタンのスタイル */
+.custom-file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 240px;
+    margin-left: 45px; /* 入力フォームと合わせる */
+    background-color: #ddd;
+    border-radius: 4px;
+    font-family: "Arial", sans-serif; /* フォントを指定 */
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* シャドウの設定 */
+}
+
+/* 画像ファイルクリアボタン */
+.btn-secondary {
+    height: 45px;
+    width: 90px;
+    margin-left: 20px;
+    color: #000; /* フォントの色 */
+    background-color: #eee;
+    border-radius: 4px;
+    font-family: "Arial", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 2px rgba(128, 128, 128, 0.4); /* シャドウの設定 */
+}
+
+/* プレビュー画像のスタイル */
+#imagePreview img {
+    position: relative; /* ✅ 高さ計算に影響を与えるように変更 */
+    max-width: 100px;
+    max-height: 100px;
+    margin-left: 45px; /* 入力フォームと合わせる */
+    margin-bottom: 30px; /* 青ボタンと被らないようにするため余白を追加 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* エラーメッセージ配置設定 */
+.invalid-feedback {
+    color: red;
+    font-size: 0.875rem; /* 小さめのフォントサイズ */
+    position: absolute;  /* 絶対配置 */
+    left: 55px;  /* 左端を調整 */
+    top: 100%;  /* フィールドのすぐ下に配置 */
+    width: max-content;  /* メッセージ幅を適切に調整 */
+    white-space: nowrap; /* 長いエラーメッセージを折り返さない */
+}
+
+/* 下記商品情報詳細画面用設定 */
+
+.details-table {
+    width: 100%;
+}
+
+/* IDのスタイル（仕様書通り） */
+.details-label.id-header {
+    font-style: italic; /* 斜体フォント */
+    text-align: center; /* 中央揃え */
+}
+
+/* 値の部分 */
+.details-value {
+    font-family: "Arial", sans-serif; /* フォントを指定 */
+    font-size: 30px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 80px;
+    max-width: 300px; /* 内容が長くなっても枠線からはみ出ないように */
+}
+
+/* 行ごとの間隔調整 */
+.details-row {
+    margin-bottom: 20px; /* 各項目の間隔を調整 */
+}
+
+/* 商品画像とコメントの枠線 */
+.bordered-box {
+    border: 1px solid #ddd;
+    border-radius: 5px; /* 角を丸く */
+    padding: 5px;
+    display: inline-block;
+    max-width: 300px; /* 他の値設定と合わせる */
+    min-height: 80px;
+}
