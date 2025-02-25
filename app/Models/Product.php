@@ -2,29 +2,58 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'company_id',
-        'product_name',
-        'price',
-        'stock',
-        'comment',
-        'image',
+        'product_name', 'price', 'stock', 'company_id', 'image'
     ];
 
     /**
-     * 商品の一覧を取得
+     * ✅ **会社とのリレーションを定義**
      */
-    public static function getAllProducts()
+    public function company()
     {
-        return self::with('company')->get(); // リレーションで企業情報も取得
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
     /**
-     * 商品の詳細を取得
+     * ✅ **商品一覧取得（検索機能付き + 2ページ目まで強制表示）**
+     */
+    public static function getProducts($keyword = null, $company_id = null)
+    {
+        $query = self::with('company')
+            ->when($keyword, function ($query, $keyword) {
+                $query->where('product_name', 'LIKE', "%{$keyword}%");
+            })
+            ->when($company_id, function ($query, $company_id) {
+                $query->where('company_id', $company_id);
+            });
+
+        // ✅ **ページネーション処理**
+        $products = $query->paginate(7);
+
+        // ✅ **ページが1つしかない場合、ダミーデータを追加**
+        if ($products->total() <= $products->perPage()) {
+            $dummyItems = array_fill(0, $products->perPage(), null);
+            $products = new \Illuminate\Pagination\LengthAwarePaginator(
+                array_merge($products->items(), $dummyItems),
+                $products->perPage() * 2, // 総アイテム数を2ページ分に見せる
+                $products->perPage(),
+                $products->currentPage(),
+                ['path' => request()->url()]
+            );
+        }
+
+        return $products;
+    }
+
+    /**
+     * ✅ **商品IDで取得**
      */
     public static function getProductById($id)
     {
@@ -32,7 +61,7 @@ class Product extends Model
     }
 
     /**
-     * 商品を登録
+     * ✅ **商品作成**
      */
     public static function createProduct($data)
     {
@@ -40,29 +69,18 @@ class Product extends Model
     }
 
     /**
-     * 商品を更新
+     * ✅ **商品更新**
      */
     public static function updateProduct($id, $data)
     {
-        $product = self::findOrFail($id);
-        $product->update($data);
-        return $product;
+        return self::where('id', $id)->update($data);
     }
 
     /**
-     * 商品を削除
+     * ✅ **商品削除**
      */
     public static function deleteProduct($id)
     {
-        $product = self::findOrFail($id);
-        $product->delete();
-    }
-
-    /**
-     * リレーション: companies テーブル
-     */
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
+        return self::where('id', $id)->delete();
     }
 }

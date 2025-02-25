@@ -9,12 +9,13 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['company_name', 'street_address', 'representative_name'];
+
     /**
-     * テーブルのカラムを許可する
+     * 企業リスト取得
      */
-    protected $fillable = [
-        'company_name',
-        'street_address',
-        'representative_name',
-    ];
+    public static function getAllCompanies()
+    {
+        return self::all();
+    }
 }

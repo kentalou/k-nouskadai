@@ -8,34 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
     protected $redirectTo = '/products'; // 商品一覧ページにリダイレクト
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * ログインフォームを表示
-     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * ログイン処理
-     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -43,25 +27,12 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        // ✅ ログイン成功時
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('products.index')->with('success', 'ログインしました！');
+            return redirect()->route('products.index')->with('success', config('message.login_success'));
         }
 
-        // ❌ ログイン失敗時
         return back()->withInput($request->only('email'))
-                     ->with('error', 'ログインに失敗しました。メールアドレスまたはパスワードが間違っています。');
+                     ->with('error', config('message.login_failed'));
     }
-
-    // /**
-    //  * ログアウト処理
-    //  */
-    // public function logout(Request $request)
-    // {
-    //     Auth::logout();
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-    //     return redirect()->route('login')->with('success', 'ログアウトしました。');
-    // }
 }
