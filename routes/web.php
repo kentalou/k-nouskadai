@@ -58,18 +58,3 @@ Route::post('/email/verification-notification', function () {
 
 // ホームページルート（未使用時は削除可能）
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//　ページネーション非表示デバッグテスト用
-Route::get('/test-pagination', function () {
-    $products = Product::paginate(10);
-    return view('test', compact('products'));
-});
-
-//　セッション動作テスト
-Route::get('/session-test', function () {
-    session()->put('test_session', 'セッション動作テスト');
-    session()->save();
-    session()->put('old_image', 'テスト画像');
-    session()->save();
-    return session()->all();
-});

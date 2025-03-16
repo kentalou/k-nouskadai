@@ -32,6 +32,10 @@
                     </div>
                 </div>
             @endforeach
+            
+            @push('scripts')
+                <script src="{{ asset('js/product-form.js') }}"></script>
+            @endpush
         @endif
     </div>
 

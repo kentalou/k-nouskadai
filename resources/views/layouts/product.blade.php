@@ -39,9 +39,8 @@
     <footer class="text-center py-3">
         © 2025 商品管理システム
     </footer>
-    <!-- 各ブラウザ表示カスタム用JS -->
-    <script src="{{ asset('js/product.js') }}"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 </html>

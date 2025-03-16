@@ -13,6 +13,18 @@
         </select>
     </div>
     <div class="col-md-2">
-        <button type="submit" class="btn btn-light search-btn w-100">検索</button>
+        <button type="button" class="btn btn-light search-btn w-100">検索</button>
+    </div>
+    <div class="col-md-6">
+        <input type="number" name="price_min" class="form-control search-input" placeholder="価格（下限）" value="{{ request('price_min') }}">
+    </div>
+    <div class="col-md-6">
+        <input type="number" name="price_max" class="form-control search-input" placeholder="価格（上限）" value="{{ request('price_max') }}">
+    </div>
+    <div class="col-md-6">
+        <input type="number" name="stock_min" class="form-control search-input" placeholder="在庫数（下限）" value="{{ request('stock_min') }}">
+    </div>
+    <div class="col-md-6">
+        <input type="number" name="stock_max" class="form-control search-input" placeholder="在庫数（上限）" value="{{ request('stock_max') }}">
     </div>
 </div>

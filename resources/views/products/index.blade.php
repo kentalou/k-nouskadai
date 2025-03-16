@@ -22,18 +22,18 @@
         <table class="table">
             <thead class="table-light">
                 <tr>
-                    <th class="id-header">ID</th>
-                    <th>商品画像</th>
-                    <th>商品名</th>
-                    <th>価格</th>
-                    <th>在庫数</th>
-                    <th>メーカー名</th>
+                    <th class="sort-header" data-column="id" tabindex="0">ID</th>
+                    <th class="sort-header" data-column="image" tabindex="0">商品画像</th>
+                    <th class="sort-header" data-column="product_name" tabindex="0">商品名</th>
+                    <th class="sort-header" data-column="price" tabindex="0">価格</th>
+                    <th class="sort-header" data-column="stock" tabindex="0">在庫数</th>
+                    <th class="sort-header" data-column="company_name" tabindex="0">メーカー名</th>
                     <th>
                         <a href="{{ route('products.create') }}" class="btn-register">新規登録</a>
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="product-table">
                 @foreach ($products as $index => $product)
                     @if (!is_null($product))
                         <x-product.row :product="$product" :index="$index" />
@@ -53,8 +53,21 @@
     </div>
 
     <!-- ページネーション -->
-    <div class="d-flex justify-content-center mt-3">
+    <div id="pagination-container" class="d-flex justify-content-center mt-3">
         {!! $products->links('pagination::bootstrap-5') !!}
     </div>
+
+    @push('scripts')
+        <!-- ✅ 追加：jQuery・tablesorter CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            const configMessage = {
+                delete_success: "{{ config('message.delete_success') }}",
+                delete_error:   "{{ config('message.delete_error') }}"
+            };
+            var searchUrl = "{{ route('products.index') }}";
+        </script>
+        <script src="{{ asset('js/product-index.js') }}"></script>
+    @endpush
 </div>
 @endsection

@@ -14,11 +14,12 @@
     <td>
         @if (optional($product)->id)
             <a href="{{ route('products.show', optional($product)->id) }}" class="btn btn-info btn-sm">詳細</a>
-            <form method="POST" action="{{ route('products.destroy', optional($product)->id) }}" class="delete-form" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm delete-button">削除</button>
-            </form>
+            <button type="button"
+                class="btn btn-danger btn-sm delete-button"
+                data-delete-url="{{ route('products.destroy', $product->id) }}"
+                data-token="{{ csrf_token() }}">
+                削除
+            </button>
         @else
             <span class="text-muted">---</span>
         @endif
